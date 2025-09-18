@@ -9,26 +9,44 @@ class TodoCollection:
     def add_todo_item(self, name: str, description: str):
         """Adds TodoItem to _collection for this Collection Obj"""
         self._collection.append(TodoItem(name, description))
-        print(f"Added todo item '{name}'")
+        message = f"Added todo item '{name}'"
+        print(message)
 
-    def view_todo_item(self, name: str) -> TodoItem:
+        return
+
+    def view_todo_item(self, name: str) -> str:
         """Returns TodoItem based on name"""
         for todo_item in self._collection:
             if todo_item.name == name:
-                print("----- To-Do Item Info -----")
-                print(f"Name: {todo_item.name}")
-                print(f"Description: {todo_item.description}")
+                message = f"""
+                    ----- To-Do Item Info -----
+                    Name: {todo_item.name}
+                    Description: {todo_item.description}
+                """
+                print(message)
+
+                return
+
         raise ValueError(
             "No todo list exists with that name. Did you double check capitalization?"
         )
 
-    def delete_todo_item(self, name: str):
+    def delete_todo_item(self, name: str) -> str:
         """Removes a TodoItem from this _collection based on name"""
+
         # Check if any item matches before filtering
         if not any(todo.name == name for todo in self._collection):
             raise ValueError(f"No todo item found with name: {name}")
 
         # Keep everything except the matching item(s)
+        starting_length = len(self._collection)
         self._collection = [todo for todo in self._collection if todo.name != name]
 
-        print(f"Deleted todo item '{name}'")
+        message = f"""
+            Deleted To-Do item '{name}'
+            Number of To-Do items: {starting_length} items -> {len(self._collection)} items
+        """
+
+        print(message)
+
+        return
