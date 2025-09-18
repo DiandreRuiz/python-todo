@@ -23,7 +23,7 @@ Requirements:
 
 # custom
 from todo_collection import TodoCollection
-from print_utilities import display_user_error
+from print_utilities import display_user_error, display_success
 
 # package
 from typing import List
@@ -68,17 +68,20 @@ def parse_and_perform_user_input(
                 if len(args) != 2:
                     display_user_error("Proper 'add' usage: add (name) (description)")
                 else:
-                    todo_collection.add_todo_item(args[0], args[1])
+                    res = todo_collection.add_todo_item(args[0], args[1])
+                    display_success(res)
             case "view":
                 if len(args) != 1:
                     display_user_error("Proper 'view' usage: view (name)")
                 else:
-                    todo_collection.view_todo_item(args[0])
+                    res = todo_collection.view_todo_item(args[0])
+                    display_success(res)
             case "delete":
                 if len(args) != 1:
                     display_user_error("Proper 'delete' usage: delete (name)")
                 else:
-                    todo_collection.delete_todo_item(args[0])
+                    res = todo_collection.delete_todo_item(args[0])
+                    display_success(res)
             case "quit":
                 if len(args) > 0:
                     display_user_error("Proper 'quit' usage: quit (no args)")

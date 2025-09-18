@@ -7,15 +7,14 @@ class TodoCollection:
     def __init__(self, collection=[]):
         self._collection: List[TodoItem] = collection
 
-    def add_todo_item(self, name: str, description: str):
+    def add_todo_item(self, name: str, description: str) -> str:
         """Adds TodoItem to _collection for this Collection Obj"""
         if any(todo.name == name for todo in self._collection):
             raise ValueError(f"To-Do item with name {name} already exists!")
         self._collection.append(TodoItem(name, description))
         message = f"Added todo item '{name}'"
-        display_success(message)
 
-        return
+        return message
 
     def view_todo_item(self, name: str) -> str:
         """Returns TodoItem based on name"""
@@ -26,9 +25,8 @@ class TodoCollection:
                     Name: {todo_item.name}
                     Description: {todo_item.description}
                 """
-                display_success(message)
 
-                return
+                return message
 
         raise ValueError(
             "No todo list exists with that name. Did you double check capitalization?"
@@ -50,6 +48,4 @@ class TodoCollection:
             Number of To-Do items: {starting_length} items -> {len(self._collection)} items
         """
 
-        display_success(message)
-
-        return
+        return message
