@@ -21,10 +21,12 @@ class TodoCollection:
         for todo_item in self._collection:
             if todo_item.name == name:
                 message = f"""
-                    ----- To-Do Item Info -----
-                    Name: {todo_item.name}
-                    Description: {todo_item.description}
-                """
+        ----- To-Do Item Info -----
+        Name:
+        {todo_item.name}
+        Description:
+        {todo_item.description}
+        """
 
                 return message
 
@@ -44,8 +46,8 @@ class TodoCollection:
         self._collection = [todo for todo in self._collection if todo.name != name]
 
         message = f"""
-            Deleted To-Do item '{name}'
-            Number of To-Do items: {starting_length} items -> {len(self._collection)} items
+        Deleted To-Do item '{name}'
+        Number of To-Do items: {starting_length} items -> {len(self._collection)} items
         """
 
         return message
