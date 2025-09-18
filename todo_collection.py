@@ -1,5 +1,6 @@
 from typing import List
 from todo_item import TodoItem
+from print_utilities import display_success
 
 
 class TodoCollection:
@@ -12,7 +13,7 @@ class TodoCollection:
             raise ValueError(f"To-Do item with name {name} already exists!")
         self._collection.append(TodoItem(name, description))
         message = f"Added todo item '{name}'"
-        print(message)
+        display_success(message)
 
         return
 
@@ -25,7 +26,7 @@ class TodoCollection:
                     Name: {todo_item.name}
                     Description: {todo_item.description}
                 """
-                print(message)
+                display_success(message)
 
                 return
 
@@ -49,6 +50,6 @@ class TodoCollection:
             Number of To-Do items: {starting_length} items -> {len(self._collection)} items
         """
 
-        print(message)
+        display_success(message)
 
         return

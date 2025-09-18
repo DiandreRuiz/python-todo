@@ -21,7 +21,11 @@ Requirements:
 # hashing to improve the efficiency by quite a bit once the todo-lists start
 # to get really long.
 
+# custom
 from todo_collection import TodoCollection
+from print_utilities import display_user_error
+
+# package
 from typing import List
 import time
 
@@ -49,29 +53,6 @@ def goodbye_and_exit():
     print("Goodbye!")
     time.sleep(1)
     exit()
-
-
-def display_user_error(message) -> str:
-    """Wraps error message in ASCII to make text red"""
-    print(
-        f"""
-        ________________________
-        
-        \033[91m{message}\033[0m
-        ________________________
-    """
-    )
-
-def display_success_message(message) -> str:
-    """Wraps success message in ASCII to make text green"""
-    print(
-        f"""
-        ________________________
-        
-        \033[92m{message}\033[0m
-        ________________________
-    """
-    )
 
 
 def parse_and_perform_user_input(
