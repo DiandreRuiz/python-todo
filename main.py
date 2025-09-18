@@ -79,7 +79,7 @@ def parse_and_perform_user_input(
                 else:
                     goodbye_and_exit()
             case _:
-                print("Please provide a valid input!")
+                print("\033[91mPlease provide a valid input!\033[0m")
     except ValueError as e:
         print(repr(e))
 
