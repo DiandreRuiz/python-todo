@@ -56,32 +56,44 @@ def parse_and_perform_user_input(
 ):
     """Matches user input to appropriate class function from TodoCollection and executes"""
     command, *args = user_input
+
+    # NOTE: Uggo but worko
     try:
         match command:
             case "add":
                 if len(args) != 2:
-                    print("Proper 'add' usage: add (name) (description)")
+                    print()
+                    print("\033[91mProper 'add' usage: add (name) (description)\033[0m")
+                    print()
                 else:
                     todo_collection.add_todo_item(args[0], args[1])
             case "view":
                 if len(args) != 1:
-                    print("Proper 'view' usage: view (name)")
+                    print()
+                    print("\033[91mProper 'view' usage: view (name)\033[0m")
+                    print()
                 else:
                     todo_collection.view_todo_item(args[0])
             case "delete":
                 if len(args) != 1:
-                    print("Proper 'delete' usage: delete (name)")
+                    print()
+                    print("\033[91mProper 'delete' usage: delete (name)\033[0m")
+                    print()
                 else:
                     todo_collection.delete_todo_item(args[0])
             case "quit":
                 if len(args) > 0:
-                    print("Proper 'quit' usage: quit (no args)")
+                    print()
+                    print("\033[91mProper 'quit' usage: quit (no args)\033[0m")
+                    print()
                 else:
                     goodbye_and_exit()
             case _:
                 print("\033[91mPlease provide a valid input!\033[0m")
+                print()
     except ValueError as e:
-        print(repr(e))
+        print(f"\033[91m{str(e)}\033[0m")
+        print()
 
 
 def main():

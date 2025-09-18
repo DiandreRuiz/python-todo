@@ -8,6 +8,8 @@ class TodoCollection:
 
     def add_todo_item(self, name: str, description: str):
         """Adds TodoItem to _collection for this Collection Obj"""
+        if any(todo.name == name for todo in self._collection):
+            raise ValueError(f"To-Do item with name {name} already exists!")
         self._collection.append(TodoItem(name, description))
         message = f"Added todo item '{name}'"
         print(message)
