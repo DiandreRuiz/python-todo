@@ -94,8 +94,7 @@ def parse_and_perform_user_input(
             case _:
                 display_user_error("Please provide a valid input!")
     except ValueError as e:
-        print(f"\033[91m{str(e)}\033[0m")
-        print()
+        display_user_error(f"{str(e)}")
 
 
 def main():
