@@ -39,11 +39,15 @@ def welcome_user() -> str:
 
 def take_user_input() -> list[str]:
     """Ask user what they would like to do and take their input"""
-    print("What would you like to do?")
-    print("1. add todo item -> add (name) (description)")
-    print("2. view todo item details -> view (name)")
-    print("3. delete todo item -> delete (name)")
-    print("4. Quit the app -> quit")
+    print(
+        """\033[33m
+          What would you like to do?
+          1. add todo item -> add (name) (description)
+          2. view todo item details -> view (name)
+          3. delete todo item -> delete (name)
+          4. Quit the app -> quit\033[0m
+          """
+    )
 
     user_input = input("> ").strip()
     return user_input.split(" ", 2)
@@ -88,7 +92,10 @@ def parse_and_perform_user_input(
                 else:
                     goodbye_and_exit()
             case _:
-                display_user_error("Please provide a valid input!")
+                display_user_error(
+                    f"""Please provide a valid input!
+        '{command}' is not a valid command."""
+                )
     except ValueError as e:
         display_user_error(f"{str(e)}")
 

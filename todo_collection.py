@@ -31,7 +31,8 @@ class TodoCollection:
                 return message
 
         raise ValueError(
-            "No todo list exists with that name. Did you double check capitalization?"
+            f"""No To-Do item found named: '{name}'
+        Did you double check capitalization?"""
         )
 
     def delete_todo_item(self, name: str) -> str:
@@ -39,7 +40,10 @@ class TodoCollection:
 
         # Check if any item matches before filtering
         if not any(todo.name == name for todo in self._collection):
-            raise ValueError(f"No todo item found with name: {name}")
+            raise ValueError(
+                f"""No To-Do item found named: '{name}'
+        Nothing to delete!"""
+            )
 
         # Keep everything except the matching item(s)
         starting_length = len(self._collection)

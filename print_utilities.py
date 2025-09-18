@@ -6,6 +6,7 @@ def display_user_error(message) -> str:
         
         \033[91m{message}\033[0m
         ________________________
+    
     """
     )
 
@@ -18,5 +19,6 @@ def display_success(message) -> str:
         
         \033[92m{message}\033[0m
         ________________________
+    
     """
     )
