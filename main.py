@@ -51,6 +51,17 @@ def goodbye_and_exit():
     exit()
 
 
+def display_user_error(message) -> str:
+    print(
+        f"""
+        ________________________
+        
+        \033[91m{message}\033[0m
+        ________________________
+    """
+    )
+
+
 def parse_and_perform_user_input(
     user_input: List[str], todo_collection: TodoCollection
 ):
@@ -62,35 +73,26 @@ def parse_and_perform_user_input(
         match command:
             case "add":
                 if len(args) != 2:
-                    print()
-                    print("\033[91mProper 'add' usage: add (name) (description)\033[0m")
-                    print()
+                    display_user_error("Proper 'add' usage: add (name) (description)")
                 else:
                     todo_collection.add_todo_item(args[0], args[1])
             case "view":
                 if len(args) != 1:
-                    print()
-                    print("\033[91mProper 'view' usage: view (name)\033[0m")
-                    print()
+                    display_user_error("Proper 'view' usage: view (name)")
                 else:
                     todo_collection.view_todo_item(args[0])
             case "delete":
                 if len(args) != 1:
-                    print()
-                    print("\033[91mProper 'delete' usage: delete (name)\033[0m")
-                    print()
+                    display_user_error("Proper 'delete' usage: delete (name)")
                 else:
                     todo_collection.delete_todo_item(args[0])
             case "quit":
                 if len(args) > 0:
-                    print()
-                    print("\033[91mProper 'quit' usage: quit (no args)\033[0m")
-                    print()
+                    display_user_error("Proper 'quit' usage: quit (no args)")
                 else:
                     goodbye_and_exit()
             case _:
-                print("\033[91mPlease provide a valid input!\033[0m")
-                print()
+                display_user_error("Please provide a valid input!")
     except ValueError as e:
         print(f"\033[91m{str(e)}\033[0m")
         print()
