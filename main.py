@@ -78,6 +78,8 @@ def parse_and_perform_user_input(
                     print("Proper 'quit' usage: quit (no args)")
                 else:
                     goodbye_and_exit()
+            case _:
+                print("Please provide a valid input!")
     except ValueError as e:
         print(repr(e))
 
