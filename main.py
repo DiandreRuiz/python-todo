@@ -45,6 +45,12 @@ def take_user_input() -> list[str]:
     return user_input.split(" ", 2)
 
 
+def goodbye_and_exit():
+    print("Goodbye!")
+    time.sleep(1)
+    exit()
+
+
 def parse_and_perform_user_input(
     user_input: List[str], todo_collection: TodoCollection
 ):
@@ -63,29 +69,19 @@ def parse_and_perform_user_input(
                 todo_collection.view_todo_item(args[0])
         case "delete":
             if len(args) != 1:
-                print("Proper delete usage: delete (name)")
+                print("Proper 'delete' usage: delete (name)")
             else:
                 todo_collection.delete_todo_item(args[0])
+        case "quit":
+            if len(args) > 0:
+                print("Proper 'quit' usage: quit (no args)")
+            else:
+                goodbye_and_exit()
 
 
 def main():
     todo_collection = TodoCollection()
+
     while True:
         user_input = take_user_input()
-        command, *args = user_input
-
-        match command:
-            case "":
-                print("Please select from the options list!")
-                time.sleep(2)
-
-            case "add":
-                if len(args) < 2:
-                    print("Proper 'add' usage: add (name) (description)")
-                else:
-                    todo_collection.add_todo_item(name, description)
-                    print(f"Added todo item: '{name}'")
-
-            case "view":
-                name = user_input[1]
-                description = todo_collection.view_todo_item(name).description
+        parse_and_perform_user_input(user_input, todo_collection)
