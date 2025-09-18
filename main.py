@@ -56,27 +56,30 @@ def parse_and_perform_user_input(
 ):
     """Matches user input to appropriate class function from TodoCollection and executes"""
     command, *args = user_input
-    match command:
-        case "add":
-            if len(args) != 2:
-                print("Proper 'add' usage: add (name) (description)")
-            else:
-                todo_collection.add_todo_item(args[0], args[1])
-        case "view":
-            if len(args) != 1:
-                print("Proper 'view' usage: view (name)")
-            else:
-                todo_collection.view_todo_item(args[0])
-        case "delete":
-            if len(args) != 1:
-                print("Proper 'delete' usage: delete (name)")
-            else:
-                todo_collection.delete_todo_item(args[0])
-        case "quit":
-            if len(args) > 0:
-                print("Proper 'quit' usage: quit (no args)")
-            else:
-                goodbye_and_exit()
+    try:
+        match command:
+            case "add":
+                if len(args) != 2:
+                    print("Proper 'add' usage: add (name) (description)")
+                else:
+                    todo_collection.add_todo_item(args[0], args[1])
+            case "view":
+                if len(args) != 1:
+                    print("Proper 'view' usage: view (name)")
+                else:
+                    todo_collection.view_todo_item(args[0])
+            case "delete":
+                if len(args) != 1:
+                    print("Proper 'delete' usage: delete (name)")
+                else:
+                    todo_collection.delete_todo_item(args[0])
+            case "quit":
+                if len(args) > 0:
+                    print("Proper 'quit' usage: quit (no args)")
+                else:
+                    goodbye_and_exit()
+    except ValueError as e:
+        print(repr(e))
 
 
 def main():
@@ -85,3 +88,7 @@ def main():
     while True:
         user_input = take_user_input()
         parse_and_perform_user_input(user_input, todo_collection)
+
+
+if __name__ == "__main__":
+    main()
