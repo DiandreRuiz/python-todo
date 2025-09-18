@@ -15,7 +15,9 @@ class TodoCollection:
         """Returns TodoItem based on name"""
         for todo_item in self._collection:
             if todo_item.name == name:
-                return todo_item
+                print("----- To-Do Item Info -----")
+                print(f"Name: {todo_item.name}")
+                print(f"Description: {todo_item.description}")
         raise ValueError(
             "No todo list exists with that name. Did you double check capitalization?"
         )
@@ -28,5 +30,5 @@ class TodoCollection:
 
         # Keep everything except the matching item(s)
         self._collection = [todo for todo in self._collection if todo.name != name]
-        
+
         print(f"Deleted todo item '{name}'")
