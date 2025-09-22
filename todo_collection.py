@@ -1,7 +1,5 @@
 from typing import List
 from todo_item import TodoItem
-from print_utilities import display_success
-
 
 class TodoCollection:
     def __init__(self, collection=[]):
